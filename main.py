@@ -1,4 +1,4 @@
-import json, time, requests, random
+import json, time, requests, random, os
 import sqlite3
 from secrets import API_KEY
 
@@ -18,6 +18,9 @@ def get_ids():
         return data['ids']
 
 if __name__ == '__main__':
+    abspath = os.path.abspath(__file__)
+    dname = os.path.dirname(abspath)
+    os.chdir(dname)
     ids = get_ids()
     res = get_prices(ids)
     con = sqlite3.connect("data.db")
